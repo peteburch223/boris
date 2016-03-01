@@ -10,6 +10,12 @@ describe DockingStation do
 	end
 
 	it {should respond_to :return_bike}
+  it {should respond_to :bike_count}
+ 
+  it 'increases the count of the docking station by 1 when a bike is returned' do
+  count = subject.bike_count  
+  subject.return_bike(bike)
+  expect(subject.bike_count).to eq count + 1
+  end
 
-	
 end 
