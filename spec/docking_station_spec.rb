@@ -3,19 +3,18 @@ require 'docking_station'
 describe DockingStation do
 	it {should respond_to :release_bike}
 
-	let(:bike) { subject.release_bike }
+	let(:released_bike) { subject.release_bike }
 	it 'creates an instance of the Bike class when release_bike is called and the bike is working' do
-		expect(bike.class).to eq Bike
-  		expect(bike).to be_working
+		expect(released_bike.class).to eq Bike
+  		expect(released_bike).to be_working
 	end
 
-	it {should respond_to :return_bike}
-  it {should respond_to :bike_count}
+	it {should respond_to(:return_bike).with(1).argument }
+  it {should respond_to :bike}
  
-  it 'increases the count of the docking station by 1 when a bike is returned' do
-  count = subject.bike_count  
-  subject.return_bike(bike)
-  expect(subject.bike_count).to eq count + 1
-  end
+  it 'when we return a bike we are able to see it at the dock' do
+    subject.return_bike(released_bike)
+    expect(subject.bike).to eq released_bike
+end
 
 end 
