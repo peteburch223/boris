@@ -43,6 +43,18 @@ describe DockingStation do
 				end
 				}.to raise_error(RuntimeError)
 		end
+
+
+	it 'expects error when no trying to release a broken bike' do
+			expect {
+				dock = DockingStation.new
+				broken_bike = dock.release_bike.broken
+				dock.dock_bike(broken_bike)
+				dock.release_bike
+			    }.to raise_error(RuntimeError)
+	end
+
+
 	end	
 			
 
