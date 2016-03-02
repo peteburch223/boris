@@ -32,12 +32,9 @@ describe DockingStation do
     describe '#dock_bike' do
       it { is_expected.to respond_to(:dock_bike).with(1).argument}
 
-      it "raises an error if user tries to park bike when there is one" do
-        if subject.bikes.empty?
-          bike = Bike.new
-          subject.dock_bike(bike)
-        end
-        expect { subject.dock_bike(bike)}.to raise_error("Too Many Bikes!")
+      it "raises an error if user tries to park bike when it is full" do
+        (20-subject.bikes.length).times { subject.dock_bike(Bike.new) }
+        expect { subject.dock_bike(Bike.new)}.to raise_error("Too Many Bikes!")
       end
     end
 end

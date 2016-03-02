@@ -3,9 +3,9 @@ class DockingStation
 
 	MAX_BIKES = 20
 
-def initialize
-	@bikes = []
-end
+	def initialize
+		@bikes = []
+	end
 
   def release_bike
   	raise "No Bikes!" if @bikes.empty?
