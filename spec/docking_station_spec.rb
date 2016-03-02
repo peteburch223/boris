@@ -34,5 +34,11 @@ describe DockingStation do
       expect { subject.release_bike }.to raise_error("No Bikes!")
     end
 
-
+    it "raises an error if user tries to park bike when there is one" do
+      if subject.bike.nil?
+            bike = Bike.new
+            subject.dock_bike(bike)
+      end
+      expect { subject.dock_bike(bike)}.to raise_error("Too Many Bikes!")
+      end
 end
