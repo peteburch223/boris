@@ -4,7 +4,9 @@ describe DockingStation do
 	it {expect(subject).to respond_to :release_bike }
 
 	it "checks whether release_bike gets a bike" do
-	expect(subject.release_bike).to be_a(Bike)
+		station = DockingStation.new
+		station.dock_bike(Bike.new)
+	expect(station.release_bike).to be_a(Bike)
 	end
 
 	it 'expects bikes to be working' do
@@ -14,9 +16,8 @@ describe DockingStation do
 	it {expect(subject).to respond_to(:dock_bike).with(1).argument }
 
 	it 'expect to see a bike' do
-		dock = DockingStation.new
-		bike = dock.bike
-		expect(dock.bike).to eq(bike)
+		 
+		expect(subject.bikes).to be_a(Array)
 	end
 
 	#it 'expect to return the same bike' do
@@ -37,9 +38,9 @@ describe DockingStation do
 			
 			
 			expect {
-				 #while
+				while true
 				subject.dock_bike(Bike.new)
-				#end
+				end
 				}.to raise_error(RuntimeError)
 		end
 	end	
