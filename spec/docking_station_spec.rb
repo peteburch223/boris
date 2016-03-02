@@ -20,16 +20,19 @@ describe DockingStation do
     it { is_expected.to respond_to(:dock_bike).with(1).argument}
     it { is_expected.to respond_to(:bike)}
 
-    it 'expects docked bike to be returned bike' do
-      bike = Bike.new
-      subject.dock_bike(bike)
-      expect(subject.bike).to eq bike
+    describe '#release_bike' do
+      it 'expects docked bike to be returned bike' do
+        bike = Bike.new
+        subject.dock_bike(bike)
+        expect(subject.bike).to eq bike
+      end
     end
+
 
   	it "raises an error if user tries to release bike when there isn't one" do
    		subject.release_bike if !subject.bike.nil?
       expect { subject.release_bike }.to raise_error("No Bikes!")
     end
 
- 
+
 end
