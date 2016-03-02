@@ -7,6 +7,7 @@ class DockingStation
   end
 
   def dock_bike(bike)
+		raise "Too Many Bikes!" if @bike
   	@bike = bike
   end
 end
