@@ -11,18 +11,25 @@ describe DockingStation do
 		expect(Bike.new.working?).to eq (false or true)
 	end
 	
-	it {expect(subject).to respond_to :dock_bike}.with(1).argument }
+	it {expect(subject).to respond_to(:dock_bike).with(1).argument }
 
 	it 'expect to see a bike' do
 		dock = DockingStation.new
-		bike = dock.release_bike
+		bike = dock.bike
 		expect(dock.bike).to eq(bike)
 	end
 
 	it 'expect to return the same bike' do
 		dock = DockingStation.new
-		bike = dock.release_bike
+		bike = dock.bike
 		expect(dock.dock_bike(bike)).to eq(bike)
+	end
+
+	it 'expects error when no bikes' do
+			expect {
+				while true 
+				subject.release_bike
+			    end}.to raise_error(RuntimeError)
 	end
 
 	
