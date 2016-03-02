@@ -33,7 +33,7 @@ describe DockingStation do
       it { is_expected.to respond_to(:dock_bike).with(1).argument}
 
       it "raises an error if user tries to park bike when it is full" do
-        (20-subject.bikes.length).times { subject.dock_bike(Bike.new) }
+        (DockingStation::DEFAULT_CAPACITY - subject.bikes.length).times { subject.dock_bike(Bike.new) }
         expect { subject.dock_bike(Bike.new)}.to raise_error("Too Many Bikes!")
       end
     end
