@@ -19,11 +19,11 @@ describe DockingStation do
 		expect(dock.bike).to eq(bike)
 	end
 
-	it 'expect to return the same bike' do
-		dock = DockingStation.new
-		bike = dock.bike
-		expect(dock.dock_bike(bike)).to eq(bike)
-	end
+	#it 'expect to return the same bike' do
+	#	dock = DockingStation.new
+	#	bike = dock.bike
+	#	expect(dock.dock_bike(bike)).to eq(bike)
+	#end
 
 	it 'expects error when no bikes' do
 			expect {
@@ -31,6 +31,19 @@ describe DockingStation do
 				subject.release_bike
 			    end}.to raise_error(RuntimeError)
 	end
+
+	describe "#dock_bike" do
+		it 'expects error when dock is full' do
+			
+			
+			expect {
+				 #while
+				subject.dock_bike(Bike.new)
+				#end
+				}.to raise_error(RuntimeError)
+		end
+	end	
+			
 
 	
 end
