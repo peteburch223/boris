@@ -2,7 +2,15 @@ require './lib/docking_station.rb'
 require './lib/bike.rb'
 
 docking_station = DockingStation.new
-puts docking_station.bike
+
+
+
+
+#puts docking_station.bikes.count
+
+
+# try and add 20 bikes
+20.times {docking_station.dock_bike(Bike.new)}
 
 # try and remove bike from docking station when there isn't one - should raise error
 # cycle = docking_station.release_bike
