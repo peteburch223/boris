@@ -1,6 +1,6 @@
 require 'dockingstation'
 
-describe DockingStation do 
+describe DockingStation do
 	it {expect(subject).to respond_to :release_bike }
 
 	it "checks whether release_bike gets a bike" do
@@ -9,10 +9,20 @@ describe DockingStation do
 	expect(station.release_bike).to be_a(Bike)
 	end
 
+	it 'expects capacity to have default of 20' do
+		expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
+	end
+
+	it 'expects to start with different capacity' do
+		
+		expect(subject.capacity).not_to eq DockingStation::DEFAULT_CAPACITY
+	end
+
+
 	it 'expects bikes to be working' do
 		expect(Bike.new.working?).to eq (false or true)
 	end
-	
+
 	it {expect(subject).to respond_to(:dock_bike).with(1).argument }
 
 	it 'expect to see a bike' do
@@ -35,6 +45,8 @@ describe DockingStation do
 			expect {subject.dock_bike(Bike.new)}.to raise_error("There are no spaces available")
 		end
 
+
+
 =begin
 	it 'allows a capacity to be set' do
 		expect(subject.capacity=10).to eq subject.capacity
@@ -55,15 +67,8 @@ describe DockingStation do
 	end
 =end
 
-	end	
-			
+	end
 
-	
+
+
 end
-
-
-
-
-
-
-
