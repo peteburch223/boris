@@ -41,10 +41,10 @@ describe DockingStation do
 
  		it	'expects error when trying to release a broken bike' do
  				bike = Bike.new
- 				bike.broken
+ 				bike.report_broken
  				subject.dock_bike(bike)
   			expect {subject.release_bike}.to raise_error(RuntimeError, "Sorry, this bike is broken")
- 	 	end
+		 	end
   end
 
 	describe '#bikes'  do
@@ -53,14 +53,7 @@ describe DockingStation do
 		end
 
 	end
-	
 
-
-	#it 'expect to return the same bike' do
-	#	dock = DockingStation.new
-	#	bike = dock.bike
-	#	expect(dock.dock_bike(bike)).to eq(bike)
-	#end
 
 
 
@@ -73,9 +66,6 @@ it 'checks whether the capacity is DEFAULT CAPACITY' do
 	expect(subject.capacity).to eq subject.class::DEFAULT_CAPACITY
 end
 
-
-
 =end
-
 
 end
