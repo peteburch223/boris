@@ -13,9 +13,9 @@ describe DockingStation do
 	  expect(subject.release_bike).to eq (bike)
 	end
 
-	it 'expects bikes to be working' do
-		expect(Bike.new.working?).to eq (false or true)
-	end
+	# it 'expects bikes to be working' do
+	# 	expect(Bike.new.working?).to eq (false || true)
+	# end
 
 	it 'should dock a bike' do
 		expect(subject).to respond_to(:dock).with(1).argument

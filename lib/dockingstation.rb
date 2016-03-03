@@ -20,7 +20,7 @@ class DockingStation
 		bikes.pop
 	end
 
-	private
+	# private
 
 		attr_reader :bikes
 

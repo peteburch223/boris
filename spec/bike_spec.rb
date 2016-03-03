@@ -16,8 +16,9 @@ describe Bike do
 	end
 	it 'expects bikes to return their operational status if it is broken' do
 		status = false
-		subject.working = status
-		expect(subject.working?).to eq status
+		bike = Bike.new
+		bike.working = status
+		expect(bike.working?).to eq status
 	end
 
 end

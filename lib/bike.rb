@@ -1,22 +1,15 @@
 class Bike
 
 	def initialize
-		@status = true
+		@status = false
 	end
 
 	def working?
-		status
+		@status
 	end
 
 	def working=(value)
-		status = value
+		@status = value
 	end
-
-	 private
-	 attr_reader :status
-
-	# def status
-	# 	@status
-	# end
 
 end
