@@ -16,7 +16,6 @@ describe DockingStation do
 	it {expect(subject).to respond_to(:dock_bike).with(1).argument }
 
 	it 'expect to see a bike' do
-		 
 		expect(subject.bikes).to be_a(Array)
 	end
 
@@ -43,6 +42,15 @@ describe DockingStation do
 				end
 				}.to raise_error(RuntimeError)
 		end
+
+
+	it 'allows a capacity to be set' do
+		expect(subject.capacity=10).to eq subject.capacity
+	end
+
+	it 'checks whether the capacity is DEFAULT CAPACITY' do
+		expect(subject.capacity).to eq subject.class::DEFAULT_CAPACITY
+	end
 
 
 	it 'expects error when no trying to release a broken bike' do

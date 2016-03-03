@@ -4,8 +4,9 @@ class DockingStation
 DEFAULT_CAPACITY = 20
 	
 	attr_reader :bikes
+	attr_accessor :capacity
 
-	def initialize(capacity=DEFAULT_CAPACITY)
+	def initialize(capacity=20)
 		@capacity = capacity 
 		@bikes = [] #Array.new(20) {Bike.new}
 	end
