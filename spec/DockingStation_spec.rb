@@ -45,6 +45,12 @@ describe DockingStation do
 			expect {subject.dock_bike(Bike.new)}.to raise_error("There are no spaces available")
 		end
 
+	it	'expects error when trying to release a broken bike' do
+				bike = Bike.new
+				bike.broken
+				subject.dock_bike(bike)
+ 			expect {subject.release_bike}.to raise_error(RuntimeError, "Sorry, this bike is broken")
+	 	end
 
 
 
@@ -59,14 +65,7 @@ describe DockingStation do
 	end
 
 
-	it 'expects error when no trying to release a broken bike' do
-			expect {
-				dock = DockingStation.new
-				broken_bike = dock.release_bike.broken
-				dock.dock_bike(broken_bike)
-				dock.release_bike
-			    }.to raise_error(RuntimeError)
-	end
+
 =end
 
 	end

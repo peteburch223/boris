@@ -14,7 +14,8 @@ DEFAULT_CAPACITY = 20
 	def release_bike
 		raise ("No bikes left, try again later") if empty?
 		bike = @bikes.pop
-
+		raise ("Sorry, this bike is broken") unless bike.working?
+		bike
 	end
 
 	def dock_bike(bike)
