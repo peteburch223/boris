@@ -4,10 +4,10 @@ class DockingStation
 DEFAULT_CAPACITY = 20
 	
 	attr_reader :bikes
-	attr_accessor :capacity
+	#attr_accessor :capacity
 
-	def initialize(capacity=20)
-		@capacity = capacity 
+	def initialize()
+		#@capacity = capacity 
 		@bikes = [] #Array.new(20) {Bike.new}
 	end
 
@@ -18,14 +18,14 @@ DEFAULT_CAPACITY = 20
 	end
 
 	def dock_bike(bike)
-		raise ("Sorry dock is full, try again later") if full?
+		raise ("There are no spaces available") if full?
 		@bikes << bike
 	end
 
 	private
 
 	def full?
-		@bikes.length >= @capacity
+		@bikes.length >= DEFAULT_CAPACITY
 	end
 
 	def empty?

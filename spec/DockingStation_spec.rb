@@ -26,24 +26,16 @@ describe DockingStation do
 	#end
 
 	it 'expects error when no bikes' do
-			expect {
-				while true 
-				subject.release_bike
-			    end}.to raise_error(RuntimeError)
+			expect {subject.release_bike}.to raise_error(RuntimeError)
 	end
 
 	describe "#dock_bike" do
 		it 'expects error when dock is full' do
-			
-			
-			expect {
-				while true
-				subject.dock_bike(Bike.new)
-				end
-				}.to raise_error(RuntimeError)
+			20.times { subject.dock_bike(Bike.new)}
+			expect {subject.dock_bike(Bike.new)}.to raise_error("There are no spaces available")
 		end
 
-
+=begin
 	it 'allows a capacity to be set' do
 		expect(subject.capacity=10).to eq subject.capacity
 	end
@@ -61,7 +53,7 @@ describe DockingStation do
 				dock.release_bike
 			    }.to raise_error(RuntimeError)
 	end
-
+=end
 
 	end	
 			
