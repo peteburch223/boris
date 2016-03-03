@@ -12,11 +12,19 @@ class DockingStation
 
 	def dock(bike)
 		fail "Station is full" if full?
-		bikes << bike
+		if bike.working?
+			bikes << bike
+		else
+			bikes.reverse!
+			bikes << bike
+			bikes.reverse!
+		end
 	end
 
 	def release_bike
 		fail "No bikes available" if empty?
+		fail "Bike is broken" if !bikes.last.working?
+		# bikes.sort{|x,y| x.working? <=> y.working?}
 		bikes.pop
 	end
 

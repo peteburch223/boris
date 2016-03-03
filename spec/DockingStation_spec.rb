@@ -7,11 +7,31 @@ describe DockingStation do
 		expect {subject.release_bike}.to raise_error("No bikes available")
 	end
 
-	it "checks whether release_bike gets a bike" do
+	it "checks whether release_bike gets a bike that works" do
 		bike = Bike.new
+		bike.working = true
 		subject.dock(bike)
 	  expect(subject.release_bike).to eq (bike)
 	end
+
+	it "checks whether release_bike raises an error when the next bike is broken" do
+		bike = Bike.new
+		bike.working = false
+		subject.dock(bike)
+	  expect{subject.release_bike}.to raise_error "Bike is broken"
+	end
+
+	it "checks whether bikes are sorted so that working bikes are released" do
+		good_bike = Bike.new
+		good_bike.working = true
+		subject.dock(good_bike)
+
+		bad_bike = Bike.new
+		bad_bike.working = false
+		subject.dock(bad_bike)
+		expect(subject.release_bike).to eq (good_bike)		
+	end
+
 
 	# it 'expects bikes to be working' do
 	# 	expect(Bike.new.working?).to eq (false || true)

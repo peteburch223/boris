@@ -1,7 +1,7 @@
 class Bike
 
 	def initialize
-		@status = false
+		@status = true
 	end
 
 	def working?
