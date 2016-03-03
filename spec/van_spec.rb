@@ -22,6 +22,27 @@ describe Van do
 
     end
 
+    it 'takes only the broken bikes' do
+      station = DockingStation.new
+      broken_bike = Bike.new
+      broken_bike.report_broken
+      8.times {station.dock_bike(broken_bike)}
+      4.times {station.dock_bike(Bike.new)}
+      #var = station.bikes.select { |bike| bike.broken?}
+      expect(subject.take_broken_bikes_from(station).size).to eq 8
+    end
+
+    it 'expects dockingstation to be left with working bikes' do
+      station = DockingStation.new
+      broken_bike = Bike.new
+      broken_bike.report_broken
+      8.times {station.dock_bike(broken_bike)}
+      6.times {station.dock_bike(Bike.new)}
+      #station.bikes.select { |bike| bike.broken?}
+      expect(station.bikes.reject{ |bike| bike.broken?}.size).to eq 6
+    end
+
+
   #   it 'takes broken bikes'
   #     allow(station).to receive(:bikes).and_return(["bike1",'bike2','bike3'])
   #     expect(subject.take_broken_bikes_from(station))
