@@ -57,4 +57,9 @@ describe DockingStation do
 		end
 	end
 
+  it 'should accept capacity parameter' do
+  	expect(DockingStation).to respond_to(:new).with(1).argument
+  end
+
+
 end
