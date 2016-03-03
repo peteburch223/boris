@@ -5,14 +5,14 @@ describe DockingStation do
 
 	describe '#release_bike' do
 		it "checks whether release_bike gets a bike" do
-			station = DockingStation.new
-			station.dock_bike(Bike.new)
-		expect(station.release_bike).to be_a(Bike)
+			subject.dock_bike(double(:bike))
+		  expect(subject.release_bike).to be_a(Bike)
 		end
 
 		it 'expects the released bike to be working' do
-			subject.dock_bike(Bike.new)
-			expect(subject.release_bike.working?).to eq (true)
+			subject.dock_bike(double(:bike))
+			bike = subject.release_bike
+			expect(bike.working?).to eq (true)
 		end
 
 		it 'expects error when no bikes' do
@@ -35,12 +35,12 @@ describe DockingStation do
 		 it {expect(subject).to respond_to(:dock_bike).with(1).argument }
 
 		 it 'expects error when dock is full' do
- 			subject.capacity.times { subject.dock_bike(Bike.new)}
- 			expect {subject.dock_bike(Bike.new)}.to raise_error("There are no spaces available")
+ 			subject.capacity.times { subject.dock_bike(double(:bike))}
+ 			expect {subject.dock_bike(double(:bike))}.to raise_error("There are no spaces available")
  		end
 
  		it	'expects error when trying to release a broken bike' do
- 				bike = Bike.new
+ 				bike = double(:bike)
  				bike.report_broken
  				subject.dock_bike(bike)
   			expect {subject.release_bike}.to raise_error(RuntimeError, "Sorry, this bike is broken")
