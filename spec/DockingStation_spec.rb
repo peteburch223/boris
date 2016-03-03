@@ -45,7 +45,7 @@ describe DockingStation do
 			expect {subject.dock_bike(Bike.new)}.to raise_error("There are no spaces available")
 		end
 
-	it 'ex'
+
 
 
 
