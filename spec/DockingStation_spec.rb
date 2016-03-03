@@ -14,8 +14,8 @@ describe DockingStation do
 	end
 
 	it 'expects to start with different capacity' do
-		
-		expect(subject.capacity).not_to eq DockingStation::DEFAULT_CAPACITY
+		dock = DockingStation.new(30)
+		expect(dock.capacity).not_to eq DockingStation::DEFAULT_CAPACITY
 	end
 
 
@@ -41,9 +41,11 @@ describe DockingStation do
 
 	describe "#dock_bike" do
 		it 'expects error when dock is full' do
-			20.times { subject.dock_bike(Bike.new)}
+			subject.capacity.times { subject.dock_bike(Bike.new)}
 			expect {subject.dock_bike(Bike.new)}.to raise_error("There are no spaces available")
 		end
+
+	it 'ex'
 
 
 

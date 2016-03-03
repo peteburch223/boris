@@ -25,7 +25,7 @@ DEFAULT_CAPACITY = 20
 	private
 
 	def full?
-		@bikes.length >= DEFAULT_CAPACITY
+		@bikes.length >= @capacity
 	end
 
 	def empty?
