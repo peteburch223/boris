@@ -22,14 +22,14 @@ while !van.bikes.empty?
   garage.store(bike)
 end
 
-# garage.fix!
-#
-# while !garage.bikes.empty?
-#   bike = garage.release_bike
-#   van.load(bike)
-# end
-#
-# while !van.bikes.empty?
-#   bike = van.unload
-#   station.dock_bike(bike)
-# end
+garage.fix
+
+while !garage.bikes.empty?
+  bike = garage.release_bike
+  van.load(bike)
+end
+
+while !van.bikes.empty?
+  bike = van.unload
+  station.dock_bike(bike)
+end

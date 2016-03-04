@@ -23,6 +23,13 @@ describe Bike do
 		end
 	end
 
+	describe '#report_working' do
+		it 'change status of bike to working' do
+			subject.report_working
+			expect(subject).to be_working
+		end
+	end
+
 	describe '#broken?' do
 		it 'should expect new bike to not be broken' do
 			expect(subject).not_to be_broken

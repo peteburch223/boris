@@ -16,6 +16,12 @@ class Garage
     @bikes.pop
   end
 
+  def fix
+    bikes.each do |bike|
+      bike.report_working
+    end
+  end
+
   private
   def empty?
   	@bikes.length == 0
