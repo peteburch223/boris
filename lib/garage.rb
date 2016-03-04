@@ -1,29 +1,16 @@
-
+require 'bikecontainer'
 
 class Garage
-  attr_reader :bikes
 
-  def initialize
-    @bikes = []
-  end
+  include BikeContainer
 
-  def store(bike)
-    @bikes << bike
-  end
+  alias_method :store, :bike_in
+  alias_method :release_bike, :bike_out
 
-  def release_bike
-    raise ("Garage empty") if empty?
-    @bikes.pop
-  end
 
   def fix
     bikes.each do |bike|
       bike.report_working
     end
-  end
-
-  private
-  def empty?
-  	@bikes.length == 0
   end
 end

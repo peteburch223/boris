@@ -1,32 +1,12 @@
 require 'garage'
+require 'bikecontainer_spec'
 
 describe Garage do
   it {expect(subject).to respond_to(:store).with(1).argument }
   it {expect(subject).to respond_to :release_bike}
   it {expect(subject).to respond_to :fix}
 
-  describe '#store' do
-    let (:bike) {double(:bike)}
-    it 'adds bike to garage' do
-      bike_count = subject.bikes.count
-      subject.store(bike)
-      expect(subject.bikes.count).to eq bike_count+1
-    end
-  end
-
-  describe '#release_bike' do
-    let (:bike) {double(:bike)}
-    it 'unloads a bike' do
-      subject.store(bike)
-      bike_count = subject.bikes.count
-      subject.release_bike
-      expect(subject.bikes.count).to eq bike_count-1
-    end
-
-    it 'expects error when no bikes' do
-        expect {subject.release_bike}.to raise_error('Garage empty')
-    end
-  end
+  it_behaves_like "bike container"
 
   describe '#fix' do
     it 'turns broken bikes into working bikes' do

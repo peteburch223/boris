@@ -1,23 +1,9 @@
-require_relative 'dockingstation'
+require 'bikecontainer'
 
 class Van
-  attr_reader :bikes
+  include BikeContainer
 
-  def initialize
-    @bikes = []
-  end
+  alias_method :load, :bike_in
+  alias_method :unload, :bike_out
 
-  def load(bike)
-    @bikes << bike
-  end
-
-  def unload
-    raise ("Van empty") if empty?
-    @bikes.pop
-  end
-
-  private
-  def empty?
-  	@bikes.length == 0
-  end
 end
