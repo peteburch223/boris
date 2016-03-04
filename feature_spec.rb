@@ -8,7 +8,7 @@ bikes = 11.times {Bike.new.report_broken}
 bikes.each{|bike| station.dock_bike(bike)}
 
 while !station.bikes.empty?
-  bike = station.release_bike(true)
+  bike = station.release_broken_bike
   van.load(bike)
 end
 

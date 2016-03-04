@@ -2,6 +2,7 @@ require 'dockingstation'
 
 describe DockingStation do
 	it {expect(subject).to respond_to :release_bike }
+	it {expect(subject).to respond_to :release_broken_bike }
 
 	describe '#release_bike' do
 		let(:bike) {double(:bike)}
@@ -11,12 +12,29 @@ describe DockingStation do
 		  expect(subject.release_bike).to be_a(bike.class)
 		end
 
+		it	'expects error when trying to release a broken bike' do
+		allow(bike).to receive(:report_broken).and_return false
+		allow(bike).to receive(:working?).and_return(false)
+				bike.report_broken
+				subject.dock_bike(bike)
+			expect {subject.release_bike}.to raise_error(RuntimeError, "Sorry, this bike is broken")
+		end
+
+
 		it 'expects the released bike to be working' do
 			allow(bike).to receive(:working?).and_return(true)
 			subject.dock_bike(bike)
 			released_bike = subject.release_bike
 			expect(released_bike.working?).to eq (true)
 		end
+
+		it '.release_broken_bike should only release broken bike' do
+			allow(bike).to receive(:working?).and_return(false)
+			subject.dock_bike(bike)
+			released_bike = subject.release_broken_bike
+			expect(released_bike.working?).to eq (false)
+		end
+
 
 		it 'expects error when no bikes' do
 				expect {subject.release_bike}.to raise_error(RuntimeError)
@@ -39,17 +57,15 @@ describe DockingStation do
 		 it {expect(subject).to respond_to(:dock_bike).with(1).argument }
 
 		 it 'expects error when dock is full' do
+			allow(bike).to receive(:working?).and_return(true || false)
  			subject.capacity.times { subject.dock_bike(bike)}
  			expect {subject.dock_bike(bike)}.to raise_error("There are no spaces available")
  		end
 
- 		it	'expects error when trying to release a broken bike' do
-			allow(bike).to receive(:report_broken).and_return false
-			allow(bike).to receive(:working?).and_return(false)
- 				bike.report_broken
- 				subject.dock_bike(bike)
-  			expect {subject.release_bike}.to raise_error(RuntimeError, "Sorry, this bike is broken")
-		 	end
+		it 'sorts bikes by status' do
+
+		end
+
   end
 
 	describe '#bikes'  do

@@ -18,9 +18,14 @@ class DockingStation
 		@bikes.pop
 	end
 
+	def release_broken_bike
+		@bikes.shift if !@bikes.first.working?
+	end
+
 	def dock_bike(bike)
 		raise ("There are no spaces available") if full?
 		@bikes << bike
+		@bikes.sort_by{|bike| bike.working?.to_s}
 	end
 
 	private
