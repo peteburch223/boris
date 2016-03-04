@@ -63,7 +63,19 @@ describe DockingStation do
  		end
 
 		it 'sorts bikes by status' do
-
+			4.times do |n|
+				bike = Bike.new
+				bike.report_broken if n.even?
+			  subject.dock_bike(bike)
+			end
+			p subject.bikes
+			find_working = false
+			test_pass = true
+			subject.bikes.each do |bike|
+				find_working = true if bike.working?
+				test_pass = false if find_working && !bike.working?
+			end
+			expect(test_pass).to be true
 		end
 
   end
