@@ -1,18 +1,18 @@
-require_relative 'dockingstation'
 
-class Van
+
+class Garage
   attr_reader :bikes
 
   def initialize
     @bikes = []
   end
 
-  def load(bike)
+  def store(bike)
     @bikes << bike
   end
 
-  def unload
-    raise ("Van empty") if empty?
+  def release_bike
+    raise ("Garage empty") if empty?
     @bikes.pop
   end
 
