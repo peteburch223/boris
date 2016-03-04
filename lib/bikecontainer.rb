@@ -1,10 +1,5 @@
 module BikeContainer
 
-  attr_reader :bikes
-
-  def initialize
-    @bikes = []
-  end
 
   def bike_in(bike)
     @bikes << bike
@@ -16,9 +11,13 @@ module BikeContainer
   end
 
   private
+
   def empty?
   	@bikes.length == 0
   end
 
+  def full?
+		@bikes.length >= @capacity
+	end
 
 end

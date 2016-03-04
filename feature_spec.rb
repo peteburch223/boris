@@ -3,6 +3,7 @@ require './lib/bike.rb'
 require './lib/van.rb'
 require './lib/garage.rb'
 
+
 station = DockingStation.new
 van = Van.new
 garage = Garage.new

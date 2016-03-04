@@ -1,22 +1,25 @@
 require 'dockingstation'
+require 'bikecontainer_spec'
 
 describe DockingStation do
 	it {expect(subject).to respond_to :release_bike }
 	it {expect(subject).to respond_to :release_broken_bike }
 
+	it_behaves_like "bike container"
+
 	describe '#release_bike' do
 		let(:bike) {double(:bike)}
-		it "checks whether release_bike gets a bike" do
-		allow(bike).to receive(:working?).and_return(true)
-			subject.dock_bike(bike)
-		  expect(subject.release_bike).to be_a(bike.class)
-		end
+		# it "checks whether release_bike gets a bike" do
+		# allow(bike).to receive(:working?).and_return(true)
+		# 	subject.dock_bike(bike)
+		#   expect(subject.release_bike).to be_a(bike.class)
+		# end
 
 		it	'expects error when trying to release a broken bike' do
-		allow(bike).to receive(:report_broken).and_return false
-		allow(bike).to receive(:working?).and_return(false)
-				bike.report_broken
-				subject.dock_bike(bike)
+			allow(bike).to receive(:report_broken).and_return false
+			allow(bike).to receive(:working?).and_return(false)
+			bike.report_broken
+			subject.dock_bike(bike)
 			expect {subject.release_bike}.to raise_error(RuntimeError, "Sorry, this bike is broken")
 		end
 
@@ -27,17 +30,18 @@ describe DockingStation do
 			released_bike = subject.release_bike
 			expect(released_bike.working?).to eq (true)
 		end
+		# it 'expects error when no bikes' do
+		# 		expect {subject.release_bike}.to raise_error(RuntimeError)
+		# end
+	end
 
+	describe '#release_broken_bike' do
+		let(:bike) {double(:bike)}
 		it '.release_broken_bike should only release broken bike' do
 			allow(bike).to receive(:working?).and_return(false)
 			subject.dock_bike(bike)
 			released_bike = subject.release_broken_bike
 			expect(released_bike.working?).to eq (false)
-		end
-
-
-		it 'expects error when no bikes' do
-				expect {subject.release_bike}.to raise_error(RuntimeError)
 		end
 	end
 
@@ -68,7 +72,6 @@ describe DockingStation do
 				bike.report_broken if n.even?
 			  subject.dock_bike(bike)
 			end
-			p subject.bikes
 			find_working = false
 			test_pass = true
 			subject.bikes.each do |bike|
